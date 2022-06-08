@@ -1,0 +1,82 @@
+Link para download para o git https://git-scm.com/
+
+
+ git --version : Quando executado na CLI, retorna qual é a versão do git instalada.
+
+
+ O SHA1 é um método de encriptogração consistindo em 40 caracteres usado pelo Git para indentifi-
+car arquivos, no git os arquivos ficam dentro de objetos chamados blobs que ficam dentro de uma 
+tree, de modo que ao encriptar um arquivo em SHA1 pelo software Openssl e pelo git hash obtem-se 
+SHA1 diferentes em consequência da presença desses objetos no Git.
+
+
+ O commit é um objeto que vai juntar tudo dando sentido à alteração, ele aponta para uma tree(contendo
+as alterações),um parente(o último commit antes dele), um autor, para uma mensagem e uma timestamp, os 
+commits também também possuem um SHA1
+
+ No git a autenticação por senha para operações git no GitHub deixará de existir, os métodos de auten-
+ticação baseados em token terão de ser usados, um deles é a autenticação por chave ssh que confere uma
+segurança ainda maior.
+
+
+ Para inicializar o git dentro de um repositório é usado o seguinte comando no gitbash dentro da 
+pasta: git init
+
+ Quando é a primeira vez usando o Git é necessário fazer algumas configurações iniciais passando
+um name e email do usuário para o git, são usados os comandos:
+
+git config --global user.email "emailinserido"
+
+git config --global user.name nomeinserido
+
+
+ Depois para comitar possíveis alterações no repositório é preciso primeiramente adicionar as 
+ alterações para o stage com o comando(o * significa all): git add *
+
+ Para realizar o commit após o git add é realizado o commando: git commit -m "mensagemcommit"
+ Existem 4 estados Principais dos arquivos no git:
+
+
+	 Untracked: Arquivos dos quias o git não tem ciência.
+	 Unmodified(tracked): São os arquivos não modificados do repositório.
+	 Modified(tracked): São os arquivos que eram unmodified mas sofreram algum tipo de edição.
+	 Staged(tracked): Arquivos modified ou untracked esperando para serem commitados e entrarem
+	 para o estado unmodified.
+
+ O git muda um arquivo de unmodified para modified comparando o SHA1
+
+
+ As alterações no repositório remoto não alteram o repositório online(que pode ser o Git Hub por exem-
+plo), a menos que sejam executados alguns comandos que empurrem o repósitório local(que contem os ar-
+quivos unmodified que foram comitados da staging area) para o remoto.
+
+ 
+ A Working area que contém os arquivos unmodified e modified que usamos é chamada pelo git de Working
+Tree, o comando usado para verificar se a algum arquivo staged para o comittar e se há alguma arquivo
+modified na qorking tree é o: git status 
+
+
+ Caso se deseje consultar o nome, email ou outras configurações no git pode ser usado o comando:
+git config --list
+
+
+ Caso se queira mudar uma configuração como o email por exemplo, pode ser usado o comando de passar 
+um email visto anteriormente após remove-lo com o seguinte comando:git config --global --unset user.email
+
+
+ Pra adicionar o repositório local para um remoto como o GitHub bpor exemplo, é necessário criar o 
+repositório remoto no GitHub e adicionar a origem remota no local com o comando:
+git remote add origin urldorepositórioremoto
+
+
+A origin pode ser vista com um alias do repositório remoto para não ter que ficar degitando seu link,
+para verificar a origem pode ser usado o comando: git remote -v
+
+
+Depois para empurrar as alterações ao repositório remoto é usado o comando(o master serve para indicar 
+para qual branch será empurrado o repositório local): git push origin master
+
+
+Se houver alguma alteração no repositório remoto que não tenha localmente ocorrerá um erro ao tentar 
+realizar o push, sendo necessário primeiro fazer o git pull(puxar) para integrá-los a fim de que seja
+possível empurrar novamente com o comando: git pull origin master
